@@ -1,0 +1,146 @@
+/**
+ * Basic styles with responsiveness.
+ *
+ * Using BEM structure, however native CSS with nesting is used, so there is different
+ * handling for `&` usage compared to SaSS/etc.
+ */
+
+:root {
+    --hero-bg-desktop: url('./images/1920x650.png');
+    --hero-bg-mobile: url('./images/600x600.png');
+    --hero-bg-color: #ccc;
+}
+
+body {
+    font: 16px Arial, sans-serif; /* 16px will be used as the basis for sizing */
+    margin: 0;
+}
+
+main.page {
+    > header {
+        background-color: var(--hero-bg-color); /* extend background */
+    }
+
+    > header,
+    > section {
+        margin: 0 auto;
+        min-width: 480px;  /* base off minimum width of a card */
+        width: 100%;
+    }
+
+    > section {
+        max-width: 1472px; /* base it off content size at full screen */
+    }
+}
+
+/**
+ * Hero banner for the title/image.
+ */
+.hero {
+    margin: 0 auto; /* center element within wider header for background color */
+
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    max-width: 1920px;
+    height: 650px;
+
+    background: var(--hero-bg-desktop) no-repeat top center;
+
+    .hero__heading,
+    .hero__sub-heading {
+        position: relative;
+        z-index: 2;
+        margin: 0;
+        padding: 1.5rem;
+
+        color: #fff;
+        text-align: center;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero__heading {
+        font-size: 3rem;
+    }
+
+    .hero__sub-heading {
+        font-size: 2rem;
+        font-weight: normal;
+    }
+
+    /* switch to smaller banner */
+    @media screen and (max-width: 600px) {
+        height: 600px;
+        background-image: var(--hero-bg-mobile);
+    }
+}
+
+/**
+ * Cards for photos/text.
+ */
+.cards {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+
+    padding: 2rem;
+
+    .cards__item {
+        display: flex;
+        flex-flow: column wrap;
+
+        width: 100%;
+        padding: 1.5rem;
+
+        box-sizing: border-box;
+        box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.125);
+        border-radius: 0.5rem;
+    }
+
+    .cards__photo {
+        img {
+            border-radius: 0.5rem;
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .cards__content {
+        p {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+    }
+
+    .cards__buttons {
+        display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+        margin-top: auto; /* push bottom */
+    }
+
+    .cards__button {
+        padding: 0.75rem 1.25rem;
+        border: 4px solid #333;
+        border-radius: 2rem;
+        background-color: #fff;
+        font-size: 1.25rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    /* reduced to 2-column */
+    @media screen and (max-width: 800px) {
+        grid-template-columns: auto auto;
+    }
+
+    /* reduced to 1-column */
+    @media screen and (max-width: 600px) {
+        grid-template-columns: auto;
+    }
+}
