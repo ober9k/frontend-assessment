@@ -1,0 +1,199 @@
+/**
+ * Basic styles with responsiveness.
+ *
+ * Using BEM structure, however native CSS with nesting is used, so there is different
+ * handling for `&` usage compared to SaSS/etc.
+ *
+ * Re-used the header styles from exercise 1 to create an page resembling a website.
+ */
+
+:root {
+    --hero-bg-desktop: url('./images/1920x650.png');
+    --hero-bg-mobile: url('./images/600x600.png');
+    --hero-bg-color: #ccc;
+
+    --button-bg-color: #efefef;
+    --border-color: #dfdfdf;
+}
+
+body {
+    font: 16px Arial, sans-serif; /* 16px will be used as the basis for sizing */
+    margin: 0;
+}
+
+main.page {
+    > header {
+        background-color: var(--hero-bg-color); /* extend background */
+    }
+
+    > header,
+    > section {
+        margin: 0 auto;
+        min-width: 480px;  /* base off minimum width of a card */
+        width: 100%;
+    }
+
+    > section {
+        max-width: 1472px; /* base it off content size at full screen */
+    }
+}
+
+/**
+ * Hero banner for the title/image.
+ */
+.hero {
+    margin: 0 auto; /* center element within wider header for background color */
+
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    max-width: 1920px;
+    height: 650px;
+
+    background: var(--hero-bg-desktop) no-repeat top center;
+
+    .hero__heading,
+    .hero__sub-heading {
+        position: relative;
+        z-index: 2;
+        margin: 0;
+        padding: 1.5rem;
+
+        color: #fff;
+        text-align: center;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero__heading {
+        font-size: 3rem;
+    }
+
+    .hero__sub-heading {
+        font-size: 2rem;
+        font-weight: normal;
+    }
+
+    /* switch to smaller banner */
+    @media screen and (max-width: 600px) {
+        height: 600px;
+        background-image: var(--hero-bg-mobile);
+    }
+}
+
+body {
+    font: 16px arial, sans-serif;
+
+    p, ul {
+        margin: 1.0rem 0;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.section {
+
+    padding: 1rem;
+
+    .section__nav {
+        display: flex;
+        flex-flow: row nowrap;
+        padding: 0 0 0.5rem 0;
+
+        /* treat as accordion */
+        @media screen and (max-width: 600px) {
+            display: none; /* hide tabs nav */
+        }
+    }
+
+    .section__content {
+        border: 1px solid var(--border-color);
+        border-radius: 0.25rem;
+
+        .section__content-title {
+            display: none;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section__content-body {
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        @media screen and (max-width: 600px) {
+            /* show accordion titles */
+            .section__content-title {
+                display: block;
+            }
+
+            .section__content-item--active {
+                .section__content-body {
+                    border-bottom: 1px solid var(--border-color);
+
+                    /* basic animation to slide down */
+                    transition-property: max-height;
+                    transition-duration: 1.5s;
+                    transition-delay: 0s;
+                }
+            }
+        }
+    }
+
+    .section__content-item--active {
+        .section__content-body {
+            padding: 1rem;
+            max-height: 999px;
+        }
+    }
+
+}
+
+.btn {
+    padding: 1.0rem;
+    background-color: unset;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+
+    &.btn--active {
+        background-color: var(--button-bg-color);
+    }
+
+    &.btn--tab {
+        border-radius: 0.25rem;
+    }
+
+    &.btn--accordion {
+        position: relative;
+        text-align: left;
+
+        /* arrow icon */
+        &::after {
+            position: absolute;
+            content: "▲";
+            right: 1rem;
+            width: 1rem;
+            text-align: center;
+
+            rotate: 180deg;
+            transition-property: rotate;
+            transition-duration: 0.5s;
+            transition-delay: 0s;
+        }
+
+        &.btn--active {
+            &::after {
+                rotate: 90deg; /* arrow icon rotated */
+            }
+        }
+    }
+
+}
