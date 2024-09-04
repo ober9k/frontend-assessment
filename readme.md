@@ -1,40 +1,40 @@
-Introduction
----
-Thanks for taking the time to complete this frontend technical assessment. We will be focusing on software quality (scalability, readability, maintainability, etc.) and your eye for detail. You may include any libraries, but Vue.js is preferred and jQuery is not recommended. Along with following best practices, bonus points for following our [coding guidelines](https://github.com/mindarc/frontend-assessment/wiki/Coding-guidelines). 
+# frontend-assessment
 
-Exercise 1
----
-Build a responsive page based on the designs.
+## Exercise 1
 
-##### Requirements
-1. Match the designs exactly.
-2. Needs to be responsive.
+The responsive page has been created with just plain HTML and CSS using the newly 
+available nesting within CSS. A combination of both grid and flex layouts have been 
+used to responsively display the page and elements.
 
-##### Designs
-* exercise1-desktop.png
-* exercise1-mobile.png
+The columns change from three to two at an `800px` breakpoint and two to one at a 
+`600px` breakpoint with this being inline with the banner image switch too.
 
-##### Assets
-* Desktop banner - https://via.placeholder.com/1920x650
-* Mobile banner - https://via.placeholder.com/600x600
-* Content images - https://via.placeholder.com/400x300
+This can be found within the `/exercise1` directory.
 
-Exercise 2
----
-Read the `data.json` file and display the data as tabs on desktop and an accordion on mobile.
+The provided banner images have just been added to the local repo due to some loading 
+issues encountered.
 
-##### Requirements
-1. Display data in tabs on desktop.
-2. Display data in an accordion on mobile.
-3. Only 1 accordion/tab should be open at a time.
-4. Open the first accordion/tab on load.
-5. If the open accordion is selected, close it.
+## Exercise 2
 
-###### Bonus points
-* Improve the user experience with meaningful animations/transitions.
-* Design and styling.
-* Explain why the result of `('b' + 'a' + + 'a' + 'a').toLowerCase()` is `banana`.
+The responsive page has been created with Vue.js using just a basic generated app just
+using CSS and nesting within CSS. A single component has been created to render both 
+an accordion and tabs for mobile devices and desktops respectively.
 
-Submission
----
-We recommend submitting your completed assessment as a forked repository. Please replace README content with instructions and relevant documentation.
+The tabs on the page will change to an accordion at the `600px` breakpoint with some 
+basic animations for expanding each item on the page.
+
+For display purposes, the header/hero banner from *Exercise 1* was added to enhance 
+the look and feel of the page.
+
+This can be found within the `/exercise2` directory.
+
+This can be setup by running:
+
+```sh
+npm install
+```
+```sh
+npm run dev
+```
+
+The site can then just be accessed by URL provided within the terminal once started.
